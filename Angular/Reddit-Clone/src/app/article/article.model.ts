@@ -1,6 +1,6 @@
-@export class Article {
-	title: string,
-	link: string,
+export class Article {
+	title: string;
+	link: string;
 	votes: number;
 	
 	constructor(title: string, link: string, votes?: number){
