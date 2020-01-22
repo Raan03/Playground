@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { Forms } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+
 import { ProductListComponent } from './products/product-list/products-list.component';
 import { ProductRowComponent } from './products/product-row/productrow.component';
 import { ProductImageComponent } from './products/product-image/product-image.component';
@@ -18,7 +20,8 @@ import { ProductDepartmentComponent } from './products/product-department/produc
     ProductDepartmentComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+	FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
