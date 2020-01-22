@@ -1,2 +1,2 @@
 ng new <name>
-ng add component <component>
+ng generate component <component>
