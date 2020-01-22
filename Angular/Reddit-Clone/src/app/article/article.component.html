@@ -6,12 +6,13 @@
 		<div class="label">
 			Points
 		</div>
-	<div>
+	</div>
 </div>	
 <div class="twelve wide column">
 	<a class="ui large header" href="{{ article.link }}">
 		{{ article.title }}
 	</a>
+	<div class="meta">({{ article.domain() }})</div>
 	<ul class="ui big horizontal list voters">
 		<li class="item">
 			<a href (click)="voteUp()">
