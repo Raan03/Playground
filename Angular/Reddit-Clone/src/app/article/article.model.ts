@@ -30,6 +30,7 @@ export class Article {
 			// return www.raan03.be
 			return domainAndPath.split('/')[0]
 		}catch(err){
+			console.log(`Something went wrong: ${err}`);
 			return null;
 		}
 	}
