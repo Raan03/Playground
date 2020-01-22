@@ -2,12 +2,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { ProductComponent } from './product/product.component';
+import { ProductListComponent } from './products/product-list/products-list.component';
+import { ProductRowComponent } from './products/product-row/productrow.component';
+import { ProductImageComponent } from './products/product-image/product-image.component';
+import { ProductPriceDisplayComponent } from './products/product-pricedisplay/pricedisplay.component';
+import { ProductDepartmentComponent } from './products/product-department/productdepartment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent
+    ProductListComponent,
+    ProductRowComponent,
+    ProductImageComponent,
+    ProductPriceDisplayComponent,
+    ProductDepartmentComponent
   ],
   imports: [
     BrowserModule
