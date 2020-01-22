@@ -6,12 +6,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { TemplateFormComponent } from './template-form/template-form.component';
 import { BuilderFormComponent } from './builder-form/builder-form.component';
+import { FormValidationComponent } from './form-validation/form-validation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TemplateFormComponent,
-    BuilderFormComponent
+    BuilderFormComponent,
+    FormValidationComponent
   ],
   imports: [
     BrowserModule,
