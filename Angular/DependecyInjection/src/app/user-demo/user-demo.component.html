@@ -1,6 +1,7 @@
 <div>
   <p *ngIf="userName" class="welcome">
-    Welcome {{ userName }}
+    Welcome {{ userName }}<br />
+    Injected API: {{ api }}
   </p>
   <button (click)="signIn()" class="ui button">Sign in</button>
 </div>

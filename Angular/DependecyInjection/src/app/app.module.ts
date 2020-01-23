@@ -15,7 +15,7 @@ import { UserService } from './services/user.service';
   imports: [
     BrowserModule
   ],
-  providers: [UserService],
+  providers: [UserService, { provide: "API_URL", useValue: "http://api.raan03.be/V1"}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -10,9 +10,10 @@ import { UserService } from '../services/user.service';
 export class UserDemoComponent {
   userName: string;
   //userService: UserService;
+  api: string;
 
-  constructor(private userService: UserService) {
-
+  constructor(private userService: UserService, @Inject("API_URL") apiUrl) {
+    this.api = apiUrl;
   }
 
   signIn(): void {
@@ -22,7 +23,7 @@ export class UserDemoComponent {
 
     this.userName = this.userService.getUser().name;
     console.log('username is ', this.userName);
-
+    console.log('injected api_url: ', this.api);
   }
 
 }
