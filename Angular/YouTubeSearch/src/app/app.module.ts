@@ -8,6 +8,7 @@ import { youtubeInjectables } from './Search/search.injectable';
 import { SearchBoxComponent } from './search-box/search-box.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { SearchComponent } from './search/search.component';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SearchComponent } from './search/search.component';
     SimpleHttpComponent,
     SearchBoxComponent,
     SearchResultComponent,
-    SearchComponent
+    SearchComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

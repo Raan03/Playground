@@ -1,0 +1,56 @@
+import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+
+@Component({
+  selector: 'post',
+  templateUrl: './post.component.html',
+  styleUrls: ['./post.component.css']
+})
+export class PostComponent implements OnInit {
+  loading: boolean;
+  data: Object;
+
+  constructor(private http : HttpClient) { }
+
+  ngOnInit() {
+  }
+
+  makePost(): void {
+    this.loading = true;
+
+    this.http.post('https://jsonplaceholder.typicode.com/posts',
+      JSON.stringify({
+        body: 'bar',
+        title: 'foo',
+        userId: 1
+      })
+    ).subscribe(data => {
+      this.data = data;
+      this.loading = false;
+    });
+  }
+  makeDelete() : void {
+    this.loading = true;
+
+    this.http.delete('https://jsonplaceholder.typicode.com/posts/1')
+    .subscribe(data => {
+      this.data = data;
+      this.loading = false;
+    });
+  }
+
+  makeHeaders(): void {
+    const headers: HttpHeaders = new HttpHeaders({
+      'X-API-TOKEN': 'raan03.be'
+    });
+
+    const req = new HttpRequest('GET', 'https://jsonplaceholder.typicode.com/posts/1', {
+      headers: headers
+    });
+
+    this.http.request(req)
+      .subscribe(data => {
+        this.data = data['body'];
+      });
+  }
+}
