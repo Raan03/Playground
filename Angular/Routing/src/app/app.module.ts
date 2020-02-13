@@ -2,10 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, ActivatedRoute } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { ProductsComponent } from './products/products.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,13 +18,13 @@ const routes: Routes = [
   /*// auth
   { path: 'login', component: LoginComponent },
   { path: 'protected', component: ProtectedComponent, canActivate: [LoggedInGuard] },
-
+  */
   // nest
   {
-    path: 'products',
+    path: 'products/:id',
     component: ProductsComponent,
-    children: childRoutes
-  }*/
+    //children: childRoutes
+  }
 ];
 
 @NgModule({
@@ -31,7 +32,8 @@ const routes: Routes = [
     AppComponent,
     HomeComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
