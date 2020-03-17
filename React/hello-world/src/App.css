@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.personCard{
+    border: 1px solid gray;
+    width: 20%;
+    display: inline-block;
+}
