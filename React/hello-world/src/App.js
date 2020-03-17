@@ -4,11 +4,16 @@ import Person from './Person/Person';
 
 class App extends Component {
     state = {
-        persons: [{ name: "Ranu", age: 31 }, { name: "Lucy", age: 10}]
+        persons: [{ name: "Ranu", age: 31 }, { name: "Lucy", age: 10 }],
+        otherState: 'some other value'
     }
 
     switchNameHandler = () => {
         console.log("We clicked");
+        // don't do this: this.state.persons[0].name = "Ranu Annaert";
+        console.log(this.state);
+        this.setState({ persons: [{ name: "Ranu Annaert", age: 32 }, { name: "Lucy Annaert", age: 10 }] });
+        console.log(this.state);
     }
 
     render() {
