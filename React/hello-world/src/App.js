@@ -5,7 +5,8 @@ import Person from './Person/Person';
 class App extends Component {
     state = {
         persons: [{ name: "Ranu", age: 31 }, { name: "Lucy", age: 10 }],
-        otherState: 'some other value'
+        otherState: 'some other value',
+        showPersons: false
     }
 
     switchNameHandler = (newName) => {
@@ -22,6 +23,10 @@ class App extends Component {
         })
     }
 
+    togglePersonsHandler = () => {
+        this.setState({ showPersons: !this.state.showPersons });
+    }
+
     render() {
         const style = {
             backgroundColor: 'white',
@@ -36,23 +41,29 @@ class App extends Component {
                 <h1>It works!</h1>
                 <button
                     style={style}
-                    onClick={this.switchNameHandler.bind(this, "Testing BTN")}
+                    onClick={this.togglePersonsHandler}
                 >
                     Switch Names
                 </button>
-                <Person
-                    name={this.state.persons[0].name}
-                    age={this.state.persons[0].age}
-                    click={() => this.switchNameHandler("Testing P1")}
-                    changed={this.nameChangeHandler}
-                />
-                <Person
-                    name={this.state.persons[1].name}
-                    age={this.state.persons[1].age}
-                    click={() => this.switchNameHandler("Testing P2")}
-                >
-                    This is my dog
-                </Person>
+                {
+                    this.state.showPersons === true ?
+                    <div>
+                    <Person
+                        name={this.state.persons[0].name}
+                        age={this.state.persons[0].age}
+                        click={() => this.switchNameHandler("Testing P1")}
+                        changed={this.nameChangeHandler}
+                    />
+                    <Person
+                        name={this.state.persons[1].name}
+                        age={this.state.persons[1].age}
+                        click={() => this.switchNameHandler("Testing P2")}
+                    >
+                        This is my dog
+                    </Person>
+                        </div>
+                        : null
+                }
             </div>
         );
     }
