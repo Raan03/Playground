@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './Person.css';
 // JavaScript source code
 const person = (props) => {
     return (
