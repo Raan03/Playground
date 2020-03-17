@@ -4,7 +4,12 @@ import Person from './Person/Person';
 
 class App extends Component {
     state = {
-        persons: [{ name: "Ranu", age: 31 }, { name: "Lucy", age: 10 }],
+        persons: [
+            { name: "Ranu", age: 31 },
+            { name: "Lucy", age: 10 },
+            { name: "Tom", age: 35 },
+            { name: "Sofie", age: 28 },
+        ],
         otherState: 'some other value',
         showPersons: false
     }
@@ -43,19 +48,14 @@ class App extends Component {
         {
             persons = (
                 <div>
-                    <Person
-                        name={this.state.persons[0].name}
-                        age={this.state.persons[0].age}
-                        click={() => this.switchNameHandler("Testing P1")}
-                        changed={this.nameChangeHandler}
-                    />
-                    <Person
-                        name={this.state.persons[1].name}
-                        age={this.state.persons[1].age}
-                        click={() => this.switchNameHandler("Testing P2")}
-                    >
-                        This is my dog
-                    </Person>
+                    {this.state.persons.map(element => {
+                        return (
+                            <Person
+                                name={element.name}
+                                age={element.age}
+                            />    
+                            );
+                    })}
                 </div>
                 );
         }
