@@ -98,7 +98,7 @@ class App extends Component {
         }
 
         return (
-            <StyleRoot>
+            
                 <div className="App">
                     <p className={classes.join(' ')}>It works!</p>
                     <button
@@ -109,7 +109,7 @@ class App extends Component {
                 </button>
                     {persons}
                 </div>
-            </StyleRoot>
+            
         );
     }
 }
