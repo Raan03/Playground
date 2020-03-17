@@ -5,10 +5,10 @@ import Person from './Person/Person';
 class App extends Component {
     state = {
         persons: [
-            { name: "Ranu", age: 31 },
-            { name: "Lucy", age: 10, Comments: "this is my dog" },
-            { name: "Tom", age: 35, Comments: "this is my nephew" },
-            { name: "Sofie", age: 28, Comments: "we don't talk about her" }
+            { id: 1, name: "Ranu", age: 31 },
+            { id: 2, name: "Lucy", age: 10, Comments: "this is my dog" },
+            { id: 3, name: "Tom", age: 35, Comments: "this is my nephew" },
+            { id: 4, name: "Sofie", age: 28, Comments: "we don't talk about her" }
         ],
         otherState: 'some other value',
         showPersons: false
@@ -48,6 +48,7 @@ class App extends Component {
                                 click={() => this.deletePersonsHandler(index)}
                                 name={element.name}
                                 age={element.age}
+                                key={element.id}
                             >
                                 {element.Comments}
                             </Person>
