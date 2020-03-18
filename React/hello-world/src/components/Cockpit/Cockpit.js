@@ -31,14 +31,15 @@ const cockpit = (props) => {
 
     return (
         <div>
-        <p className={classes.join(' ')}>It works!</p>
-        <StyledButton
-        onClick={props.clicked}
-        showPersons={props.showPersons}
-        >
-        Toggle persons
-    </StyledButton>
-    </div>
+            <h1>{props.title}</h1>
+            <pre className={classes.join(' ')}>This module shows us some persons!</pre>
+            <StyledButton
+                onClick={props.clicked}
+                showPersons={props.showPersons}
+            >
+                Toggle persons
+            </StyledButton>
+        </div>
     );
 };
 
