@@ -18,7 +18,9 @@ const StyledDiv = styled.div`
 // JavaScript source code
 class Person extends Component {
     componentDidMount() {
-        this.elementRef.focus();
+        if (this.props.isAuth) {
+            this.elementRef.focus();
+        }
     }
     render() {
         console.log("[PERSON.JS] Render called");
@@ -34,12 +36,15 @@ class Person extends Component {
                 <p>
                     {this.props.children}
                 </p>
-                <input
-                    type="text"
-                    onChange={this.props.changed}
-                    value={this.props.name}
-                    ref={(inputElement) => { this.elementRef = inputElement }}
-                />
+                {this.props.isAuth
+                    ? (<input
+                        type="text"
+                        onChange={this.props.changed}
+                        value={this.props.name}
+                        ref={(inputElement) => { this.elementRef = inputElement }}
+                    />)
+                    : <p>Please log in to modify</p>
+                }
             </StyledDiv>
         )
     }

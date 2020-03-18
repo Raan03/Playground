@@ -40,7 +40,8 @@ class App extends Component {
         ],
         otherState: 'some other value',
         showPersons: false,
-        showCockpit: true
+        showCockpit: true,
+        authenticated: false
     }
 
     togglePersonsHandler = () => {
@@ -74,6 +75,10 @@ class App extends Component {
         this.setState({ persons: persons });
     }
 
+    loginHandler = () => {
+        this.setState({ authenticated: true });
+    };
+
     render() {
         console.log("[APP.JS] Render called");
         let persons = null;
@@ -86,6 +91,7 @@ class App extends Component {
                         persons={this.state.persons}
                         clicked={this.deletePersonsHandler}
                         changed={this.nameChangedHandler}
+                        isAuthenticated={this.state.authenticated}
                     />
                 </div>
             );
@@ -102,6 +108,7 @@ class App extends Component {
                         showPersons={this.state.showPersons}
                         clicked={this.togglePersonsHandler}
                         applicationTitle={this.props.applicationTitle}
+                        login={this.loginHandler}
                     />)
                     : null
                 }

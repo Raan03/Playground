@@ -63,6 +63,7 @@ const Cockpit = (props) => {
             >
                 Toggle persons
             </StyledButton>
+            <button onClick={props.login}>Log in</button>
         </div>
     );
 };
