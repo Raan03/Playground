@@ -18,7 +18,7 @@ const StyledDiv = styled.div`
 // JavaScript source code
 class Person extends Component {
     componentDidMount() {
-        if (this.props.isAuth) {
+        if (this.elementRef) {
             this.elementRef.focus();
         }
     }

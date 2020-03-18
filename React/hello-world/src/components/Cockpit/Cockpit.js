@@ -65,7 +65,7 @@ const Cockpit = (props) => {
                 Toggle persons
             </StyledButton>
             <AuthContext.Consumer>
-                {(context) => context.authenticated ? <StyledButton>Logged In</StyledButton> : <StyledButton onClick={context.login}>Log in</StyledButton>}
+                {(context) => context.authenticated ? <StyledButton onClick={context.login}>Logged In</StyledButton> : <StyledButton onClick={context.login}>Log in</StyledButton>}
             </AuthContext.Consumer>
         </div>
     );
