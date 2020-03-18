@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from '../components/Persons/Person/Person';
+import Persons from '../components/Persons/Persons';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
@@ -66,19 +67,11 @@ class App extends Component {
 
             persons = (
                 <div>
-                    {this.state.persons.map((element, index) => {
-                        return (
-                                <Person
-                                    click={() => this.deletePersonsHandler(index)}
-                                    name={element.name}
-                                    age={element.age}
-                                    key={element.id}
-                                    changed={(event) => this.nameChangedHandler(event, element.id)}
-                                >
-                                    {element.Comments}
-                                </Person>
-                        );
-                    })}
+                    <Persons 
+                        persons={this.state.persons}
+                        clicked={this.deletePersonsHandler}
+                        changed={this.nameChangedHandler}
+                    />
                 </div>
             );
         }
