@@ -17,8 +17,7 @@ const StyledDiv = styled.div`
 
 // JavaScript source code
 const person = (props) => {
-    const rnd = Math.random();
-
+    
     return (
         // <div className="personCard" style={style}>
         <StyledDiv>

@@ -1,21 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from '../components/Persons/Person/Person';
-import Persons from '../components/Persons/Persons';
-import styled from 'styled-components';
 
-const StyledButton = styled.button`
-    background-color: ${props => props.showPersons ? 'red' : 'green'};
-    color: white;
-    font: inherit;
-    border: 1px solid blue;
-    padding: 8px;
-    cursor: pointer;
-    
-    &:hover {
-        background-color: ${props => props.showPersons ? 'salmon' : 'lightgreen'};
-        color: black;
-    }`;
+import Persons from '../components/Persons/Persons';
+
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
     state = {
@@ -76,26 +64,14 @@ class App extends Component {
             );
         }
 
-        const classes = [];
-
-        if (this.state.persons.length <= 2) {
-            classes.push('red'); // classes = "red";
-        }
-
-        if (this.state.persons.length <= 1) {
-            classes.push('bold'); // classes = "red bold";
-        }
-
         return (
             
                 <div className="App">
-                    <p className={classes.join(' ')}>It works!</p>
-                    <StyledButton
-                    onClick={this.togglePersonsHandler}
-                    showPersons={this.state.showPersons}
-                    >
-                    Toggle persons
-                </StyledButton>
+                    <Cockpit 
+                        persons={this.state.persons}
+                        showPersons={this.state.showPersons}
+                        clicked={this.togglePersonsHandler}
+                    />
                     {persons}
                 </div>
             
