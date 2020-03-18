@@ -17,8 +17,10 @@ const StyledDiv = styled.div`
 
 // JavaScript source code
 class Person extends Component {
+    static contextType = AuthContext;
+
     componentDidMount() {
-        if (this.elementRef) {
+        if (this.context.authenticated) {
             this.elementRef.focus();
         }
     }
@@ -36,19 +38,16 @@ class Person extends Component {
                 <p>
                     {this.props.children}
                 </p>
-                <AuthContext.Consumer>
-                    {(context) =>
-                        context.authenticated ?
-                            <input
-                                type="text"
-                                onChange={this.props.changed}
-                                value={this.props.name}
-                                ref={(inputElement) => { this.elementRef = inputElement }}
-                            />
-                            : <p>Please log in to modify!</p>
+                {this.context.authenticated ?
+                    <input
+                        type="text"
+                        onChange={this.props.changed}
+                        value={this.props.name}
+                        ref={(inputElement) => { this.elementRef = inputElement }}
+                    />
+                    : <p>Please log in to modify!</p>
 
-                    }
-                </AuthContext.Consumer>
+                }
             </StyledDiv >
         )
     }
