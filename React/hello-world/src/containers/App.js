@@ -6,6 +6,18 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+
+        console.log("[APP.JS] Constructor called");
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        console.log("[APP.JS] getDerivedStateFromProps called", props, state);
+
+        return state;
+    }
+
     state = {
         persons: [
             { id: 1, name: "Ranu", age: 31 },
@@ -49,13 +61,14 @@ class App extends Component {
     }
 
     render() {
+        console.log("[APP.JS] Render called");
         let persons = null;
 
         if (this.state.showPersons) {
 
             persons = (
                 <div>
-                    <Persons 
+                    <Persons
                         persons={this.state.persons}
                         clicked={this.deletePersonsHandler}
                         changed={this.nameChangedHandler}
@@ -65,18 +78,22 @@ class App extends Component {
         }
 
         return (
-            
-                <div className="App">
-                    <Cockpit 
-                        persons={this.state.persons}
-                        showPersons={this.state.showPersons}
-                        clicked={this.togglePersonsHandler}
-                        applicationTitle={this.props.applicationTitle}
-                    />
-                    {persons}
-                </div>
-            
+
+            <div className="App">
+                <Cockpit
+                    persons={this.state.persons}
+                    showPersons={this.state.showPersons}
+                    clicked={this.togglePersonsHandler}
+                    applicationTitle={this.props.applicationTitle}
+                />
+                {persons}
+            </div>
+
         );
+    }
+
+    componentDidMount() {
+        console.log("[APP.JS] ComponentDidMount called");
     }
 }
 

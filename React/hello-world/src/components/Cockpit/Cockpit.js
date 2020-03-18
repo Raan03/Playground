@@ -18,7 +18,7 @@ const StyledButton = styled.button`
     }`;
 
 const cockpit = (props) => {
-    
+
     const classes = [];
 
     if (props.persons.length <= 2) {

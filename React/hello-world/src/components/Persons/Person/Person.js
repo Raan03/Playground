@@ -17,7 +17,8 @@ const StyledDiv = styled.div`
 
 // JavaScript source code
 const person = (props) => {
-    
+    console.log("[PERSON.JS] Render called");
+
     return (
         // <div className="personCard" style={style}>
         <StyledDiv>
@@ -25,7 +26,7 @@ const person = (props) => {
             <p>{props.children}</p>
             <input type="text" onChange={props.changed} value={props.name} />
         </StyledDiv>
-        )
+    )
 }
 
 export default person;
