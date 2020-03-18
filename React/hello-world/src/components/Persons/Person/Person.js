@@ -17,6 +17,9 @@ const StyledDiv = styled.div`
 
 // JavaScript source code
 class Person extends Component {
+    componentDidMount() {
+        this.elementRef.focus();
+    }
     render() {
         console.log("[PERSON.JS] Render called");
 
@@ -35,6 +38,7 @@ class Person extends Component {
                     type="text"
                     onChange={this.props.changed}
                     value={this.props.name}
+                    ref={(inputElement) => { this.elementRef = inputElement }}
                 />
             </StyledDiv>
         )

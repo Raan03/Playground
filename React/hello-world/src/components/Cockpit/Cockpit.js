@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import styled from 'styled-components';
 
@@ -18,12 +18,15 @@ const StyledButton = styled.button`
     }`;
 
 const Cockpit = (props) => {
+    const toggleBtnRef = useRef(null);
+
     useEffect(() => {
         console.log("[Cockpit.JS] useEffect");
 
-        setTimeout(() => {
-            alert('Saved data to cloud');
-        }, 1000);
+        // setTimeout(() => {
+        //     alert('Saved data to cloud');
+        // }, 1000);
+        toggleBtnRef.current.click();
 
         return () => {
             console.log("[Cockpit.JS] Cleanup work in useEffect");
@@ -56,6 +59,7 @@ const Cockpit = (props) => {
             <StyledButton
                 onClick={props.clicked}
                 showPersons={props.showPersons}
+                ref={toggleBtnRef}
             >
                 Toggle persons
             </StyledButton>
