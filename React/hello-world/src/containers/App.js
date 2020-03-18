@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person';
+import Person from '../components/Persons/Person/Person';
 import styled from 'styled-components';
-import ErrorBoundary from './ErrorBoundary/ErrrorBoundary';
 
 const StyledButton = styled.button`
     background-color: ${props => props.showPersons ? 'red' : 'green'};
