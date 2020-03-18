@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import styled from 'styled-components';
 
@@ -17,7 +17,11 @@ const StyledButton = styled.button`
         color: black;
     }`;
 
-const cockpit = (props) => {
+const Cockpit = (props) => {
+    useEffect(() => {
+        console.log("[Cockpit.JS] useEffect");
+        // HttpRequest
+    });
 
     const classes = [];
 
@@ -43,4 +47,4 @@ const cockpit = (props) => {
     );
 };
 
-export default cockpit;
+export default Cockpit;
