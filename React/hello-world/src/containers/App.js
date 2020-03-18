@@ -18,6 +18,19 @@ class App extends Component {
         return state;
     }
 
+    componentDidMount() {
+        console.log("[APP.JS] ComponentDidMount called");
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("[APP.JS] shouldComponentUpdate called");
+
+        return true;
+    }
+    componentDidUpdate() {
+        console.log("[APP.JS] componentDidUpdate called");
+    }
+
+
     state = {
         persons: [
             { id: 1, name: "Ranu", age: 31 },
@@ -26,7 +39,8 @@ class App extends Component {
             { id: 4, name: "Sofie", age: 28, Comments: "we don't talk about her" }
         ],
         otherState: 'some other value',
-        showPersons: false
+        showPersons: false,
+        showCockpit: true
     }
 
     togglePersonsHandler = () => {
@@ -80,20 +94,21 @@ class App extends Component {
         return (
 
             <div className="App">
-                <Cockpit
-                    persons={this.state.persons}
-                    showPersons={this.state.showPersons}
-                    clicked={this.togglePersonsHandler}
-                    applicationTitle={this.props.applicationTitle}
-                />
+                <button onClick={() => this.setState({ showCockpit: false })}>Remove Cockpit</button>
+
+                {this.state.showCockpit ?
+                    (<Cockpit
+                        persons={this.state.persons}
+                        showPersons={this.state.showPersons}
+                        clicked={this.togglePersonsHandler}
+                        applicationTitle={this.props.applicationTitle}
+                    />)
+                    : null
+                }
                 {persons}
             </div>
 
         );
-    }
-
-    componentDidMount() {
-        console.log("[APP.JS] ComponentDidMount called");
     }
 }
 

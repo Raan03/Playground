@@ -20,8 +20,24 @@ const StyledButton = styled.button`
 const Cockpit = (props) => {
     useEffect(() => {
         console.log("[Cockpit.JS] useEffect");
-        // HttpRequest
+
+        setTimeout(() => {
+            alert('Saved data to cloud');
+        }, 1000);
+
+        return () => {
+            console.log("[Cockpit.JS] Cleanup work in useEffect");
+        };
+    }, []);
+
+    useEffect(() => {
+        console.log("[Cockpit.JS] 2nd useEffect");
+
+        return () => {
+            console.log("[Cockpit.JS] Cleanup in 2nd useEffect");
+        };
     });
+
 
     const classes = [];
 
