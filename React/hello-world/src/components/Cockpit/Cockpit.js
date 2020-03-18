@@ -31,7 +31,7 @@ const cockpit = (props) => {
 
     return (
         <div>
-            <h1>{props.title}</h1>
+            <h1>{props.applicationTitle}</h1>
             <pre className={classes.join(' ')}>This module shows us some persons!</pre>
             <StyledButton
                 onClick={props.clicked}
