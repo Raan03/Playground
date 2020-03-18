@@ -19,9 +19,6 @@ const StyledDiv = styled.div`
 const person = (props) => {
     const rnd = Math.random();
 
-    if (rnd > 0.7) {
-        throw new Error("something went wrong: rnd was " + rnd.toString() + ", while upperbound is 0.7");
-    }
     return (
         // <div className="personCard" style={style}>
         <StyledDiv>

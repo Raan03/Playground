@@ -69,7 +69,6 @@ class App extends Component {
                 <div>
                     {this.state.persons.map((element, index) => {
                         return (
-                            <ErrorBoundary key={element.id}>
                                 <Person
                                     click={() => this.deletePersonsHandler(index)}
                                     name={element.name}
@@ -79,7 +78,6 @@ class App extends Component {
                                 >
                                     {element.Comments}
                                 </Person>
-                            </ErrorBoundary>
                         );
                     })}
                 </div>
