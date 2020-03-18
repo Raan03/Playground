@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Persons from '../components/Persons/Persons';
-
+import { AuthContext } from '../context/auth-context';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
@@ -101,18 +101,18 @@ class App extends Component {
 
             <div className="App">
                 <button onClick={() => this.setState({ showCockpit: false })}>Remove Cockpit</button>
-
-                {this.state.showCockpit ?
-                    (<Cockpit
-                        personsLength={this.state.persons.length}
-                        showPersons={this.state.showPersons}
-                        clicked={this.togglePersonsHandler}
-                        applicationTitle={this.props.applicationTitle}
-                        login={this.loginHandler}
-                    />)
-                    : null
-                }
-                {persons}
+                <AuthContext.Provider value={{ authenticated: this.state.authenticated, login: this.loginHandler }}>
+                    {this.state.showCockpit ?
+                        (<Cockpit
+                            personsLength={this.state.persons.length}
+                            showPersons={this.state.showPersons}
+                            clicked={this.togglePersonsHandler}
+                            applicationTitle={this.props.applicationTitle}
+                        />)
+                        : null
+                    }
+                    {persons}
+                </AuthContext.Provider>
             </div>
 
         );

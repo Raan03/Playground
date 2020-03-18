@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 //import './Person.css';
 import styled from 'styled-components';
-
+import { AuthContext } from '../../../context/auth-context';
 const StyledDiv = styled.div`
     width: 60%;
     margin: 16px auto;
@@ -36,16 +36,20 @@ class Person extends Component {
                 <p>
                     {this.props.children}
                 </p>
-                {this.props.isAuth
-                    ? (<input
-                        type="text"
-                        onChange={this.props.changed}
-                        value={this.props.name}
-                        ref={(inputElement) => { this.elementRef = inputElement }}
-                    />)
-                    : <p>Please log in to modify</p>
-                }
-            </StyledDiv>
+                <AuthContext.Consumer>
+                    {(context) =>
+                        context.authenticated ?
+                            <input
+                                type="text"
+                                onChange={this.props.changed}
+                                value={this.props.name}
+                                ref={(inputElement) => { this.elementRef = inputElement }}
+                            />
+                            : <p>Please log in to modify!</p>
+
+                    }
+                </AuthContext.Consumer>
+            </StyledDiv >
         )
     }
 }

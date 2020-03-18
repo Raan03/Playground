@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 import './Cockpit.css';
+import { AuthContext } from '../../context/auth-context';
 
 const StyledButton = styled.button`
     background-color: ${props => props.showPersons ? 'red' : 'green'};
@@ -63,7 +64,9 @@ const Cockpit = (props) => {
             >
                 Toggle persons
             </StyledButton>
-            <button onClick={props.login}>Log in</button>
+            <AuthContext.Consumer>
+                {(context) => context.authenticated ? <StyledButton>Logged In</StyledButton> : <StyledButton onClick={context.login}>Log in</StyledButton>}
+            </AuthContext.Consumer>
         </div>
     );
 };
