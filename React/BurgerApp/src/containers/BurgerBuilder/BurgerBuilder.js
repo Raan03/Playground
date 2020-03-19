@@ -50,7 +50,7 @@ class BurgerBuilder extends Component {
 
         const priceDeducted = INGREDIENT_PRICES[type];
         const oldPrice = this.state.totalPrice;
-        const newPrice = Math.round((oldPrice + priceDeducted) * 100) / 100;
+        const newPrice = Math.round((oldPrice - priceDeducted) * 100) / 100;
 
         this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
     };
