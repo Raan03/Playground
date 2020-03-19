@@ -9,6 +9,8 @@ const INGREDIENT_PRICES = {
     meat: 1.3,
     bacon: 0.7
 };
+const MAX_GLOBAL_INGREDIENTS = 10;
+const MAX_TYPE_INGREDIENT = 3;
 
 class BurgerBuilder extends Component {
     state = {
@@ -24,7 +26,7 @@ class BurgerBuilder extends Component {
     addIngredientHandler = (type) => {
         const oldCount = this.state.ingredients[type];
         // limit to ten
-        const updatedCounted = Math.min(oldCount + 1, 10);
+        const updatedCounted = Math.min(oldCount + 1, MAX_TYPE_INGREDIENT);
         const updatedIngredients = {
             ...this.state.ingredients
         };
@@ -53,13 +55,36 @@ class BurgerBuilder extends Component {
         this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
     };
 
+    calculateCount(obj) {
+        let sum = 0;
+        for (let key in obj) {
+            sum += obj[key];
+        }
+
+        return sum;
+    }
     render() {
+        let disableInfo = {
+            ...this.state.ingredients
+        };
+
+        const limitReached = this.calculateCount(disableInfo) >= MAX_GLOBAL_INGREDIENTS;
+
+        for (let key in disableInfo) {
+            disableInfo[key] =
+            {
+                amount: disableInfo[key],
+                disableAdd: disableInfo[key] >= MAX_TYPE_INGREDIENT || limitReached,
+                disableRemove: disableInfo[key] <= 0
+            }
+        }
         return (
             <Aux>
                 <Burger ingredients={this.state.ingredients}></Burger>
                 <BuildControls
                     ingredientAdded={this.addIngredientHandler}
                     ingredientRemoved={this.removeIngredientHandler}
+                    disabled={disableInfo}
                 />
             </Aux>
         );
