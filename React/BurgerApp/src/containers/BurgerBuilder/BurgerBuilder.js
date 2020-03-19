@@ -23,7 +23,8 @@ class BurgerBuilder extends Component {
 
     addIngredientHandler = (type) => {
         const oldCount = this.state.ingredients[type];
-        const updatedCounted = oldCount + 1;
+        // limit to ten
+        const updatedCounted = Math.min(oldCount + 1, 10);
         const updatedIngredients = {
             ...this.state.ingredients
         };
@@ -36,7 +37,21 @@ class BurgerBuilder extends Component {
         this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
     };
 
-    removeIngredientHandler = (type) => { };
+    removeIngredientHandler = (type) => {
+        const oldCount = this.state.ingredients[type];
+        // at least 0
+        const updatedCounted = Math.max(oldCount - 1, 0);
+        const updatedIngredients = {
+            ...this.state.ingredients
+        };
+        updatedIngredients[type] = updatedCounted;
+
+        const priceDeducted = INGREDIENT_PRICES[type];
+        const oldPrice = this.state.totalPrice;
+        const newPrice = oldPrice + priceDeducted;
+
+        this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
+    };
 
     render() {
         return (
