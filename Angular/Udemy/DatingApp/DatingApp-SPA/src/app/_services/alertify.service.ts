@@ -14,7 +14,7 @@ export class AlertifyService {
     });
   }
   succes(message: string) {
-    alertify.succes(message);
+    alertify.success(message);
   }
   warning(message: string) {
     alertify.warning(message);
