@@ -353,3 +353,5 @@ MigrationBackup/
 .ionide/
 /Angular/Forms/.vs
 /Angular/DependecyInjection/.vs
+Angular/Udemy/DatingApp/DatingApp.API/datingapp.db-shm
+Angular/Udemy/DatingApp/DatingApp.API/datingapp.db-wal
