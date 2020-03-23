@@ -39,6 +39,7 @@ namespace DatingApp.API
 
             // DI's
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IDatingRepository, DatingRepository>();
 
             services.AddControllers();
             services.AddCors();
