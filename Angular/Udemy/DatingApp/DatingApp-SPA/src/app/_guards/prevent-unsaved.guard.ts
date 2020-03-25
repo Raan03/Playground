@@ -9,5 +9,7 @@ export class PreventUnsavedChanges
     if (component.editForm.dirty) {
       return confirm("Are you sure to continue? Unsaved changes will be lost?");
     }
+
+    return true;
   }
 }
