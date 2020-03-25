@@ -67,7 +67,9 @@
       class="form-control"
       placeholder="Date of Birth"
       formControlName="dateOfBirth"
-      type="date"
+      type="text"
+      bsDatepicker
+      [bsConfig]="bsConfig"
     />
     <div
       class="invalid-feedback"
@@ -175,8 +177,8 @@
       type="password"
       class="form-control"
       formControlName="confirmPassword"
-      placeholder="confirmPassword"
-      name="password"
+      placeholder="confirm password"
+      name="confirmPassword"
     />
     <div
       class="invalid-feedback"
@@ -187,13 +189,7 @@
     >
       Password is required
     </div>
-    <div
-      class="invalid-feedback"
-      *ngIf="
-        registerForm.hasError('mismatch') &&
-        registerForm.get('confirmPassword').touched
-      "
-    >
+    <div class="invalid-feedback" *ngIf="registerForm.hasError('mismatch')">
       Passwords must match
     </div>
   </div>
@@ -210,9 +206,3 @@
     </button>
   </div>
 </form>
-<pre>Form Value: {{ registerForm.value | json }}</pre>
-<pre>Form Status: {{ registerForm.status | json }}</pre>
-<pre>Form Status: {{ registerForm.valid | json }}</pre>
-<pre>P: {{ registerForm.get("password").errors | json }}</pre>
-<pre>CP: {{ registerForm.get("confirmPassword").errors | json }}</pre>
-<pre>Form errors: {{ registerForm.errors | json }}</pre>

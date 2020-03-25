@@ -11,7 +11,10 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { NgxGalleryModule } from "@kolkov/ngx-gallery";
 
 import { BsDropdownModule, TabsModule } from "ngx-bootstrap";
+import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
+import { FileUploadModule } from "ng2-file-upload";
 
 import { AppComponent } from "./app.component";
 import { NavComponent } from "./nav/nav.component";
@@ -19,7 +22,6 @@ import { AuthService } from "./_services/auth.service";
 import { HomeComponent } from "./home/home.component";
 import { RegisterComponent } from "./register/register.component";
 import { ErrorInterceptorProvider } from "./_services/error.interceptor";
-
 import { MemberListComponent } from "./members/member-list/member-list.component";
 import { ListsComponent } from "./lists/lists.component";
 import { MessagesComponent } from "./messages/messages.component";
@@ -33,7 +35,7 @@ import { MemberEditResolver } from "./_resolvers/member-edit.resolver";
 import { PreventUnsavedChanges } from "./_guards/prevent-unsaved.guard";
 import { AuthGuard } from "./_guards/auth.guard";
 import { PhotoEditorComponent } from "./members/photo-editor/photo-editor.component";
-import { FileUploadModule } from "ng2-file-upload";
+import { BsDatepickerActions } from "ngx-bootstrap/datepicker/reducer/bs-datepicker.actions";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -67,6 +69,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
     FormsModule,
     FileUploadModule,
     BsDropdownModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     JwtModule.forRoot({
