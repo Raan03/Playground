@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   title = "DatingApp Single Page Application";
   jwtHelper = new JwtHelperService();
 
+  constructor(private authService: AuthService) {}
   ngOnInit(): void {
     const token = localStorage.getItem("token");
     const user: User = JSON.parse(localStorage.getItem("user"));
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit {
 
     if (user) {
       this.authService.currentUser = user;
+      this.authService.changeMemberPhoto(user.photoUrl);
     }
   }
-  constructor(private authService: AuthService) {}
 }
