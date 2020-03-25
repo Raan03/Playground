@@ -19,7 +19,9 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   changeMemberPhoto(photoUrl: string) {
-    this.photoUrl.next(photoUrl);
+    if (photoUrl) {
+      this.photoUrl.next(photoUrl);
+    }
   }
 
   login(model: any) {
