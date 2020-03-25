@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.registerForm = new FormGroup(
       {
-        username: new FormControl("Hello", Validators.required),
+        username: new FormControl("", Validators.required),
         password: new FormControl("", [
           Validators.required,
           Validators.minLength(4),
@@ -52,5 +52,11 @@ export class RegisterComponent implements OnInit {
   cancel() {
     this.cancelRegister.emit(false);
     this.alertifyService.message("cancelled");
+  }
+  isValidField(fieldName: string) {
+    return (
+      this.registerForm.get(fieldName).errors &&
+      this.registerForm.get(fieldName).touched
+    );
   }
 }

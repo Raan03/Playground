@@ -3,31 +3,94 @@
   <hr />
   <div class="form-group">
     <input
+      [ngClass]="{
+        'is-invalid':
+          registerForm.get('username').errors &&
+          registerForm.get('username').touched
+      }"
       type="text"
       name="username"
       formControlName="username"
       class="form-control"
       placeholder="Username"
     />
+    <div class="invalid-feedback">Please choose a username</div>
   </div>
 
   <div class="form-group">
     <input
+      [ngClass]="{
+        'is-invalid':
+          registerForm.get('password').errors &&
+          registerForm.get('password').touched
+      }"
       type="password"
       class="form-control"
       formControlName="password"
       placeholder="Password"
       name="password"
     />
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        registerForm.get('password').hasError('required') &&
+        registerForm.get('password').touched
+      "
+    >
+      password is required
+    </div>
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        registerForm.get('password').hasError('minlength') &&
+        registerForm.get('password').touched
+      "
+    >
+      Password too short
+    </div>
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        registerForm.get('password').hasError('maxlength') &&
+        registerForm.get('password').touched
+      "
+    >
+      Password too long
+    </div>
   </div>
   <div class="form-group">
     <input
+      [ngClass]="{
+        'is-invalid':
+          (registerForm.get('confirmPassword').errors &&
+            registerForm.get('confirmPassword').touched) ||
+          (registerForm.get('confirmPassword').touched &&
+            registerForm.get('confirmPassword').hasError('mismatch'))
+      }"
       type="password"
       class="form-control"
       formControlName="confirmPassword"
       placeholder="confirmPassword"
       name="password"
     />
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        registerForm.get('confirmPassword').hasError('required') &&
+        registerForm.get('confirmPassword').touched
+      "
+    >
+      Password is required
+    </div>
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        registerForm.hasError('mismatch') &&
+        registerForm.get('confirmPassword').touched
+      "
+    >
+      Passwords must match
+    </div>
   </div>
   <div class="form-group text-center">
     <button
@@ -44,3 +107,6 @@
 </form>
 <p>Form Value: {{ registerForm.value | json }}</p>
 <p>Form Status: {{ registerForm.status | json }}</p>
+<p>Form Status: {{ registerForm.valid | json }}</p>
+<p>P: {{ registerForm.get("password").errors | json }}</p>
+<p>CP: {{ registerForm.get("confirmPassword").errors | json }}</p>
