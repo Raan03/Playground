@@ -93,4 +93,28 @@ export class PhotoEditorComponent implements OnInit {
         }
       );
   }
+
+  deletePhoto(photoId: number) {
+    this.alertifyService.confirm(
+      "Are you sure to delete this photo?",
+      () => {
+        this.userService
+          .deletePhoto(this.authService.decodedToken.nameid, photoId)
+          .subscribe(
+            () => {
+              const indexPhoto = this.photos.findIndex(d => d.id === photoId);
+              this.photos.splice(indexPhoto, 1);
+
+              this.alertifyService.succes("Photo deleted.");
+            },
+            error => {
+              this.alertifyService.error(error);
+            }
+          );
+      },
+      () => {
+        this.alertifyService.warning("Cancelled operation");
+      }
+    );
+  }
 }
