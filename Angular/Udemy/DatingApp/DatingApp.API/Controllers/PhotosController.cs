@@ -101,5 +101,40 @@ namespace DatingApp.API.Controllers
 
             return BadRequest("Could not create photo");
         }
+        [HttpPost("{id}/setMain")]
+        public async Task<IActionResult> SetMainPhoto(int userId, int id)
+        {
+            // should be in an attribute
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var user = await _datingRepository.GetUser(userId);
+
+            if (!user.Photos.Any(d => d.Id == id))
+            {
+                return Unauthorized();
+            }
+
+            var photoFromRepo = await _datingRepository.GetPhoto(id);
+
+            if (photoFromRepo.IsMain)
+            {
+                return BadRequest("This is already main photo.");
+            }
+
+            var currentMainPhoto = await _datingRepository.GetUserMainPhoto(userId);
+
+            currentMainPhoto.IsMain = false;
+            photoFromRepo.IsMain = true;
+
+            if (await _datingRepository.SaveAll())
+            {
+                return NoContent();
+            }
+
+            return BadRequest("Could not set photo to main");
+        }
     }
 }
