@@ -36,6 +36,7 @@ import { PreventUnsavedChanges } from "./_guards/prevent-unsaved.guard";
 import { AuthGuard } from "./_guards/auth.guard";
 import { PhotoEditorComponent } from "./members/photo-editor/photo-editor.component";
 import { BsDatepickerActions } from "ngx-bootstrap/datepicker/reducer/bs-datepicker.actions";
+import { TimeagoModule } from "ngx-timeago";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -80,7 +81,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
       }
     }),
     TabsModule.forRoot(),
-    NgxGalleryModule
+    NgxGalleryModule,
+    TimeagoModule.forRoot()
   ],
   providers: [
     AuthService,
