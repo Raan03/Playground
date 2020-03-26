@@ -13,6 +13,7 @@ namespace DatingApp.API.Helpers
             get { return _pageSize; }
             set { _pageSize = (value > MaxPageSize) ? MaxPageSize : Math.Max(value, 0); }
         }
-
+        public int UserId { get; set; }
+        public string Gender { get; set; }
     }
 }

@@ -9,7 +9,7 @@ import { Observable, of } from "rxjs";
 @Injectable()
 export class MemberListResolver implements Resolve<User[]> {
   pageNumber = 1;
-  pageSize = 5;
+  pageSize = 12;
 
   constructor(
     private userService: UserService,
