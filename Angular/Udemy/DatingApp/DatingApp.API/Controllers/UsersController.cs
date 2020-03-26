@@ -9,6 +9,7 @@ namespace DatingApp.API.Controllers
     using DatingApp.API.Attributes;
     using DatingApp.API.Data;
     using DatingApp.API.DTO;
+    using DatingApp.API.Helpers;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
@@ -28,10 +29,12 @@ namespace DatingApp.API.Controllers
 
         [HttpGet]
 
-        public async Task<IActionResult> GetUsers()
+        public async Task<IActionResult> GetUsers([FromQuery]UserParams userParams)
         {
-            var users = await _datingRepository.GetUsers();
+            var users = await _datingRepository.GetUsers(userParams);
             var usersDto = _mapper.Map<IEnumerable<UserForListDto>>(users);
+
+            Response.AddPagination(users);
 
             return Ok(usersDto);
         }
