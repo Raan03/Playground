@@ -4,6 +4,7 @@ import { UserService } from "../../_services/user.service";
 import { AlertifyService } from "../../_services/alertify.service";
 import { ActivatedRoute } from "@angular/router";
 import { Pagination, PaginatedResult } from "src/app/_models/pagination";
+import { UserParams, IUserParams } from "src/app/_models/userParams";
 
 @Component({
   selector: "app-member-list",
@@ -17,7 +18,7 @@ export class MemberListComponent implements OnInit {
     { value: "male", display: "Males" },
     { value: "female", display: "Females" }
   ];
-  userParams: any = {};
+  userParams: IUserParams = new UserParams();
   pagination: Pagination;
 
   constructor(
@@ -43,6 +44,7 @@ export class MemberListComponent implements OnInit {
 
   resetFilters() {
     this.userParams.gender = this.user.gender === "female" ? "male" : "female";
+
     this.userParams.minAge = 18;
     this.userParams.maxAge = 99;
 

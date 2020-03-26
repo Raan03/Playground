@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import { User } from "../_models/user";
 import { PaginatedResult } from "../_models/pagination";
 import { map } from "rxjs/operators";
+import { IUserParams } from "../_models/userParams";
 
 @Injectable({
   providedIn: "root"
@@ -17,7 +18,7 @@ export class UserService {
   getUsers(
     page?: number,
     itemsPerPage?: number,
-    userParams?: any
+    userParams?: IUserParams
   ): Observable<PaginatedResult<User[]>> {
     const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<
       User[]
@@ -31,8 +32,8 @@ export class UserService {
     }
 
     if (userParams != null) {
-      params = params.append("minAge", userParams.minAge);
-      params = params.append("maxAge", userParams.maxAge);
+      params = params.append("minAge", userParams.minAge.toString());
+      params = params.append("maxAge", userParams.maxAge.toString());
 
       params = params.append("gender", userParams.gender);
     }
