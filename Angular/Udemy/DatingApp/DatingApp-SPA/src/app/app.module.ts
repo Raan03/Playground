@@ -10,7 +10,7 @@ import { RouterModule } from "@angular/router";
 import { JwtModule } from "@auth0/angular-jwt";
 import { NgxGalleryModule } from "@kolkov/ngx-gallery";
 
-import { BsDropdownModule, TabsModule } from "ngx-bootstrap";
+import { BsDropdownModule, TabsModule, PaginationModule } from "ngx-bootstrap";
 import { BsDatepickerModule } from "ngx-bootstrap/datepicker";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
@@ -82,7 +82,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
     }),
     TabsModule.forRoot(),
     NgxGalleryModule,
-    TimeagoModule.forRoot()
+    TimeagoModule.forRoot(),
+    PaginationModule.forRoot()
   ],
   providers: [
     AuthService,
