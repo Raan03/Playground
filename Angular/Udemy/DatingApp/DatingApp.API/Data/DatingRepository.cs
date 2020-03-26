@@ -45,7 +45,7 @@ namespace DatingApp.API.Data
 
         public async Task<IEnumerable<User>> GetUsers()
         {
-            var users = await _dataContext.Users.Include(d => d.Photos).Where(d => d.Gender == "female").ToListAsync();
+            var users = await _dataContext.Users.Include(d => d.Photos).ToListAsync();
 
             return users;
         }
