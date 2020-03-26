@@ -64,7 +64,7 @@ namespace DatingApp.API.Data
             {
                 switch (userParams.OrderBy)
                 {
-                    case "created":
+                    case "lastCreated":
                         users = users.OrderByDescending(u => u.Created);
                         break;
                     default:

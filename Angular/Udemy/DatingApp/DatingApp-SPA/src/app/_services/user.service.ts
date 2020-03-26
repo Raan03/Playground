@@ -36,6 +36,7 @@ export class UserService {
       params = params.append("maxAge", userParams.maxAge.toString());
 
       params = params.append("gender", userParams.gender);
+      params = params.append("orderBy", userParams.orderBy);
     }
 
     return this.http
