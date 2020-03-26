@@ -18,7 +18,8 @@ export class UserService {
   getUsers(
     page?: number,
     itemsPerPage?: number,
-    userParams?: IUserParams
+    userParams?: IUserParams,
+    likeParams?: string
   ): Observable<PaginatedResult<User[]>> {
     const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<
       User[]
@@ -37,6 +38,13 @@ export class UserService {
 
       params = params.append("gender", userParams.gender);
       params = params.append("orderBy", userParams.orderBy);
+    }
+
+    if (likeParams === "likers") {
+      params = params.append("likers", "true");
+    }
+    if (likeParams === "likees") {
+      params = params.append("likees", "true");
     }
 
     return this.http

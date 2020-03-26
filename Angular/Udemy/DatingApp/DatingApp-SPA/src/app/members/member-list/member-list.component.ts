@@ -3,7 +3,7 @@ import { User } from "../../_models/user";
 import { UserService } from "../../_services/user.service";
 import { AlertifyService } from "../../_services/alertify.service";
 import { ActivatedRoute } from "@angular/router";
-import { Pagination, PaginatedResult } from "src/app/_models/pagination";
+import { IPagination, PaginatedResult } from "src/app/_models/pagination";
 import { UserParams, IUserParams } from "src/app/_models/userParams";
 
 @Component({
@@ -19,7 +19,7 @@ export class MemberListComponent implements OnInit {
     { value: "female", display: "Females" }
   ];
   userParams: IUserParams = new UserParams();
-  pagination: Pagination;
+  pagination: IPagination;
 
   constructor(
     private userService: UserService,

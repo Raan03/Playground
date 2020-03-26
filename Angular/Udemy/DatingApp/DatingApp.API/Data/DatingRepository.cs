@@ -98,7 +98,7 @@ namespace DatingApp.API.Data
                 return user.Likers.Where(u => u.LikeeId == id).Select(d => d.LikerId);
             }
 
-            return user.Likers.Where(u => u.LikerId == id).Select(d => d.LikeeId);
+            return user.Likees.Where(u => u.LikerId == id).Select(d => d.LikeeId);
         }
         public async Task<Like> GetLike(int userId, int recipientId)
         {
