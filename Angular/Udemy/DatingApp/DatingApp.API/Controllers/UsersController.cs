@@ -6,11 +6,13 @@ namespace DatingApp.API.Controllers
     using System.Security.Claims;
     using System.Threading.Tasks;
     using AutoMapper;
+    using DatingApp.API.Attributes;
     using DatingApp.API.Data;
     using DatingApp.API.DTO;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    [ServiceFilter(typeof(LogUserActivity))]
     [ApiController]
     [Authorize]
     [Route("api/[controller]")]

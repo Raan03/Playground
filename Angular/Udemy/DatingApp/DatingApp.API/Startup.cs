@@ -3,6 +3,7 @@ namespace DatingApp.API
     using System.Net;
     using System.Text;
     using AutoMapper;
+    using DatingApp.API.Attributes;
     using DatingApp.API.Data;
     using DatingApp.API.Helpers;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -34,6 +35,7 @@ namespace DatingApp.API
             // DI's
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IDatingRepository, DatingRepository>();
+            services.AddScoped<LogUserActivity>();
 
             services.AddAutoMapper(typeof(Startup).Assembly);
 
