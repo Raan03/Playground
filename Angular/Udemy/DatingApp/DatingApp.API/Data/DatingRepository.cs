@@ -75,7 +75,10 @@ namespace DatingApp.API.Data
 
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
         }
-
+        public async Task<Like> GetLike(int userId, int recipientId)
+        {
+            return await _dataContext.Likes.FirstOrDefaultAsync(d => d.LikerId == userId && d.LikeeId == recipientId);
+        }
         public async Task<bool> SaveAll()
         {
             return await _dataContext.SaveChangesAsync() > 0;
