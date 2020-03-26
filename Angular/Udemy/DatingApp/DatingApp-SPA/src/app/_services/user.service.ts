@@ -65,13 +65,21 @@ export class UserService {
   updateUser(id: number, user: User) {
     return this.http.put(this.baseUrl + "users/" + id, user);
   }
-  setMainPhoto(userid: number, id: number) {
+  setMainPhoto(userid: number, photoId: number) {
     return this.http.post(
-      this.baseUrl + "users/" + userid + "/photos/" + id + "/setMain",
+      this.baseUrl + "users/" + userid + "/photos/" + photoId + "/setMain",
       {}
     );
   }
-  deletePhoto(userid: number, id: number) {
-    return this.http.delete(this.baseUrl + "users/" + userid + "/photos/" + id);
+  deletePhoto(userid: number, photoId: number) {
+    return this.http.delete(
+      this.baseUrl + "users/" + userid + "/photos/" + photoId
+    );
+  }
+  sendLike(userid: number, recipientId: number) {
+    return this.http.post(
+      this.baseUrl + "users/" + userid + "/like/" + recipientId,
+      {}
+    );
   }
 }
