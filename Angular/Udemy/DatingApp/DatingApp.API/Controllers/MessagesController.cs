@@ -2,12 +2,14 @@
 namespace DatingApp.API.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Security.Claims;
     using System.Threading.Tasks;
     using AutoMapper;
     using DatingApp.API.Attributes;
     using DatingApp.API.Data;
     using DatingApp.API.DTO;
+    using DatingApp.API.Helpers;
     using DatingApp.API.Models;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -71,6 +73,23 @@ namespace DatingApp.API.Controllers
             }
 
             throw new Exception("Creating the message failed on save.");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetMessagesForUser(int userId, [FromQuery] MessageParams messageParams)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+            messageParams.UserId = userId;
+            var messagesFromRepo = await _datingRepository.GetMessagesForUser(messageParams);
+
+            var messages = _mapper.Map<IEnumerable<MessageToReturnDto>>(messagesFromRepo);
+
+            Response.AddPagination(messagesFromRepo);
+
+            return Ok(messages);
         }
     }
 }
