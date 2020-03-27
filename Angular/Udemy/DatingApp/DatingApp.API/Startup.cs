@@ -1,5 +1,6 @@
 namespace DatingApp.API
 {
+    using System;
     using System.Net;
     using System.Text;
     using AutoMapper;
@@ -30,7 +31,17 @@ namespace DatingApp.API
         public void ConfigureServices(IServiceCollection services)
         {
             // DBContext
-            services.AddDbContext<DataContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            // Are we working in dev (sqlite) or Azure (mssql)?
+            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "";
+
+            if (env == "Azure")
+            {
+                services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CloudConnection")));
+            }
+            else
+            {
+                services.AddDbContext<DataContext>(options => options.UseSqlite(Configuration.GetConnectionString("CloudConnection")));
+            }
 
             // DI's
             services.AddScoped<IAuthRepository, AuthRepository>();
