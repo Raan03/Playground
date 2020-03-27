@@ -28,14 +28,14 @@ namespace DatingApp.API.Data
 
         public async Task<Photo> GetPhoto(int id)
         {
-            var photo = await _dataContext.Photos.FirstOrDefaultAsync(d => d.Id == id);
+            var photo = await _dataContext.Photos.FindAsync(id);
 
             return photo;
         }
 
         public async Task<User> GetUser(int id)
         {
-            var user = await _dataContext.Users.Include(d => d.Photos).FirstOrDefaultAsync(u => u.Id == id);
+            var user = await _dataContext.Users.Include(d => d.Photos).FirstOrDefaultAsync(d => d.Id == id);
 
             return user;
         }
@@ -90,7 +90,9 @@ namespace DatingApp.API.Data
         }
         private async Task<IEnumerable<int>> GetUserLikes(int id, bool likers)
         {
-            var user = await _dataContext.Users.Include(u => u.Likers).Include(f => f.Likees).FirstOrDefaultAsync(u => u.Id == id);
+            var user = await _dataContext.Users.Include(u => u.Likers)
+                .Include(f => f.Likees)
+                .FirstOrDefaultAsync(u => u.Id == id);
 
 
             if (likers)
@@ -107,6 +109,21 @@ namespace DatingApp.API.Data
         public async Task<bool> SaveAll()
         {
             return await _dataContext.SaveChangesAsync() > 0;
+        }
+
+        public async Task<Message> GetMessage(int messageId)
+        {
+            return await _dataContext.Messages.FindAsync(messageId);
+        }
+
+        public Task<PagedList<Message>> GetMessagesForUser()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Message>> GetMessageThread(int userId, int recipientId)
+        {
+            throw new NotImplementedException();
         }
     }
 }
